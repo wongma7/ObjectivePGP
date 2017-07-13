@@ -390,6 +390,7 @@ NS_ASSUME_NONNULL_BEGIN
     // TODO: Bit 7 of the subpacket type is the "critical" bit.
     PGPSignatureSubpacketType subpacketType = PGPSignatureSubpacketTypeUnknown;
     [headerData getBytes:&subpacketType range:(NSRange){position, 1}];
+    subpacketType = subpacketType & 0x7F;
     headerLength = headerLength + 1;
 
     // Note: "The length includes the type octet but not this length"
